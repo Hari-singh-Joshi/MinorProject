@@ -1,0 +1,66 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block main_content %}
+<div class="main">
+    <br>
+    <br>
+    
+    <h1>Solution for <b>{{ disease_name }}</b></h1>
+<div class="result_main">
+    <p class="result"><strong>Scientific Name:</strong> {{ scientific_name }}</p>
+    <p class="result"><strong>Cause:</strong> {{ cause }}</p>
+    <p class="result"><strong>Medicinal Solution:
+        <div class="container">
+        <ul>
+            {% for medicine in solution.medicine %}
+            <li>{{ medicine }}</li>
+            {% endfor %}
+        </ul></strong> </div>
+    </p>
+    <p class="result"><strong>Dietary Remedies:</strong></p>
+    <div class="container">
+    <p><strong>What to Eat:
+       
+        <ul>
+            {% for item in solution.remedy.what_to_eat %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul></strong> </div>
+    </p>
+    <div class="container">
+    <p><strong>What Not to Eat:
+        <ul>
+            {% for item in solution.remedy.what_not_to_eat %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul></strong>
+    </p></div>
+</div>
+
+</div>
+
+<style>
+    .main {
+        background-image: url("{% static 'background1.png' %}");
+        background-size: cover;  /* Optional: adjust how the image covers the area */
+        background-position: center;  /* Optional: center the image */
+    }
+    .result_main {
+        margin: 20px 70px;
+    }
+    h1 {
+        font-family: fangsong;
+        width: 100%;
+        padding: 10px;
+        background-color: aquamarine;
+    }
+    .result {
+        background: #d5d5d5;
+        font-size: larger;
+        padding: 10px 30px;
+        border-radius: 30px;
+        margin: 15px;
+    }
+</style>
+{% endblock main_content %}

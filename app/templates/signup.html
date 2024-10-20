@@ -1,0 +1,83 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block main_content %}
+<div class="maindiv">
+    <h2>Signup Form</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group1">
+            <label for="{{ form.username.id_for_label }}">Username:</label>
+            {{ form.username }}  <!-- Render the username field -->
+        </div>
+
+        <div class="form-group1">
+            <label for="{{ form.password1.id_for_label }}">Password:</label>
+            {{ form.password1 }}  <!-- Render the password field -->
+        </div>
+
+        <div class="form-group1">
+            <label for="{{ form.password2.id_for_label }}">Password Confirmation:</label>
+            {{ form.password2 }}  <!-- Render the password confirmation field -->
+        </div>
+
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
+
+    {% if messages %}
+    <div class="mt-3">
+        {% for message in messages %}
+            <div class="alert alert-info">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <a href="{% url 'login' %}" class="btn btn-link">Already have an account? Login</a>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        background-image: url("{% static 'background1.png' %}");
+        background-position: center;
+    }
+
+    .maindiv {
+        display: table-caption;
+        {% comment %} border:2px solid black; {% endcomment %}
+        background-color: #ffffff69;
+        padding:50px;
+        border-radius:30px;
+        items-align:center;
+        align:center;
+        margin: 100px 600px;
+        {% comment %} width: 600px; {% endcomment %}
+    }
+
+    h2 {
+        margin-bottom: 20px; /* Space below the heading */
+        text-align: center; /* Center the heading */
+    }
+
+    .btn {
+        width: 100%; /* Full-width button */
+        padding: 10px; /* Padding for the button */
+        border: none; /* Remove default border */
+        border-radius: 5px; /* Rounded corners for the button */
+    }
+
+    .alert {
+        margin-top: 10px; /* Add some space above messages */
+    }
+
+    a.btn-link {
+        display: block; /* Make the link a block element */
+        text-align: center; /* Center the link */
+        margin-top: 15px; /* Space above the link */
+    }
+    .form-group1{
+        margin:30px;
+    }
+</style>
+
+{% endblock main_content %}
